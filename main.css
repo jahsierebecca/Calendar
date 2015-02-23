@@ -1,0 +1,61 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:800,400,300);
+
+body {
+	font-family: 'Raleway', sans-serif;
+	text-align: center;
+}
+
+#months {
+	margin: auto;
+	width: 80%;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+table {
+	margin: auto;
+/*	border: 1px solid black;*/
+	font-size: 12px;
+	text-align: center;
+}
+
+tr {
+	height: 30px;
+	border: 1px solid red;
+}
+
+td {
+	width: 30px;
+}
+
+.monthTable {
+	margin-top: 50px;
+}
+
+.monday {
+	background-color: rgba(27, 188, 155, 0.1);
+}
+
+.tuesday {
+	background-color: rgba(27, 188, 155, 0.3);
+}
+
+.wednesday {
+	background-color: rgba(27, 188, 155, 0.4);
+}
+
+.thursday {
+	background-color: rgba(27, 188, 155, 0.6);
+}
+
+.friday {
+	background-color: rgba(27, 188, 155, 0.7);
+}
+
+.saturday {
+	background-color: rgba(27, 188, 155, 0.8);
+}
+
+.sunday {
+	background-color: rgba(27, 188, 155, 1);
+}
