@@ -3,15 +3,26 @@
 		float: left;
 		margin: 0;
 	}
-	#monthDiv {
-		margin: 50px auto 0 auto;
 
+	#monthDiv {
+		margin: 30px auto 0 auto;
+		width: 70%;
 	}
+
 	td.day {
 		display: block;
 	}
 
-	#monthLabel, #monthTableDiv {
-	width: 50%;
+	#monthLabel {
+		text-align: center;
+	}
+
+	#monthLabel {
+		width: 40%;
+		margin-top: 50px;
+	}
+
+	#monthTableDiv {
+		width: 60%;
 	}
 }
