@@ -1,20 +1,25 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:800,400,300);
 
 body {
+   font-size: 18px;
 	font-family: 'Raleway', sans-serif;
-	text-align: center;
+	text-align: center;   
 }
+
+
+h1 { font-size: 4em; 
+margin: 0;}
+h2 { font-size: 3em; }
 
 #months {
 	margin: auto;
-	width: 80%;
+	width: 70%;
 	box-sizing: border-box;
 	text-align: center;
 }
 
 table {
 	margin: auto;
-/*	border: 1px solid black;*/
 	font-size: 12px;
 	text-align: center;
 }
@@ -28,9 +33,29 @@ td {
 	width: 30px;
 }
 
-.monthDiv {
-	margin-top: 50px;
+#monthDiv {
+	box-sizing: border-box;
+	width: 70%;
+	margin: 50px auto 0 auto;
 	padding: 0 0 20px 0;
+}
+
+.monthTable {
+	width: 100%;
+}
+
+#monthLabel {
+	font-weight: 800;
+	font-size: 3em;
+	float: right;
+	width: 50%;
+	vertical-align: middle;
+}
+
+#monthTableDiv {
+	float: left;
+	width: 50%;
+	margin: 0;
 }
 
 .month:hover {
@@ -63,4 +88,21 @@ td {
 
 .sunday {
 	background-color: rgba(27, 188, 155, 1);
+}
+
+@media screen and (max-width: 700px) {
+	td.day {
+		display: none;
+	}
+
+	#monthLabel, #monthTableDiv {
+		display: block;
+		width: 100%;
+	}
+	#monthDiv {
+		margin-top: 20px;
+	}
+	#monthTableDiv {
+		margin: 30px 0;
+	}
 }

@@ -14,21 +14,26 @@ function Months(container) {
 
 	var theMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	var theDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+	var dayLetters = ['M', 'T', 'W', 'Th', 'F', 'S', 'S'];	
 
 	var monthCal = function(monthID) {
 
 		//sets up DOM elements
-		var monthDiv = document.createElement('div');
+		var monthDiv = document.getElementById('monthDiv');
 		// var theMonth = document.getElementById(monthID);
 		var theMonth = document.getElementById(monthID);
 		console.log(theMonth);
 		var monthLength = +theMonth.numberOfDays;
-		var header = document.createElement('h3');
-		monthDiv.setAttribute('class', 'monthDiv');
+		var header = document.createElement('div');
+		header.setAttribute("id", "monthLabel");
+		// monthDiv.setAttribute('id', 'monthDiv');
 		header.innerHTML = monthID;
 		monthDiv.appendChild(header);
+		var monthTableDiv = document.createElement('div');
+		monthTableDiv.setAttribute('id', 'monthTableDiv');
 		var zoomMonth = document.createElement('table');
 		zoomMonth.setAttribute('class', 'monthTable');
+		monthDiv.appendChild(monthTableDiv);
 
 		//sets up numerical variables
 		var day1 = +theMonth.nextSibling.id;
@@ -44,7 +49,7 @@ function Months(container) {
 
 		for (var p = 0; p < numCols; p++) {
 			var th = document.createElement('th');
-			th.innerHTML = (theDays[p]);
+			th.innerHTML = (dayLetters[p]);
 			zoomMonth.appendChild(th);
 		}
 
@@ -73,8 +78,8 @@ function Months(container) {
 			}
 			zoomMonth.appendChild(tr);
 		 }
-		monthDiv.appendChild(zoomMonth);
-	 	container.appendChild(monthDiv);
+		monthTableDiv.appendChild(zoomMonth);
+	 	monthDiv.appendChild(monthDiv);
 	};
 
 
@@ -156,6 +161,9 @@ function Months(container) {
 				// var butts = "'" + th.id + "'";
 				// console.log(butts);
 				clickFunction = function() {
+					var thePlace = document.getElementById('monthDiv');
+					console.log(thePlace);
+					thePlace.innerHTML = '';
 					var monthString = this.id;
 					monthCal(monthString);
 				}
@@ -188,6 +196,10 @@ function doStuff() {
 	// board2.monthCal(31);
 	// board2.monthCal("February");
 	// board2.populate();
+
+	$('body').flowtype();
 }
 
 window.onload = doStuff;
+
+
