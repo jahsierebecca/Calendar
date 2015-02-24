@@ -15,6 +15,69 @@ function Months(container) {
 	var theMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	var theDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
+	var monthCal = function(monthID) {
+
+		//sets up DOM elements
+		var monthDiv = document.createElement('div');
+		// var theMonth = document.getElementById(monthID);
+		var theMonth = document.getElementById(monthID);
+		console.log(theMonth);
+		var monthLength = +theMonth.numberOfDays;
+		var header = document.createElement('h3');
+		monthDiv.setAttribute('class', 'monthDiv');
+		header.innerHTML = monthID;
+		monthDiv.appendChild(header);
+		var zoomMonth = document.createElement('table');
+		zoomMonth.setAttribute('class', 'monthTable');
+
+		//sets up numerical variables
+		var day1 = +theMonth.nextSibling.id;
+		var startDay = theMonth.nextSibling.dayID;
+		var end = day1 + monthLength;
+		var numCols = 7;
+		var numRows = Math.ceil(monthLength/7);
+		var monthDay = 1;
+
+		//START OF Calendar generating function
+
+		// makes day of week labels
+
+		for (var p = 0; p < numCols; p++) {
+			var th = document.createElement('th');
+			th.innerHTML = (theDays[p]);
+			zoomMonth.appendChild(th);
+		}
+
+		//sets empty days for starting on right day of week
+		var empty = 0;
+		//sets number of rows
+		for (var r = 0; r < numRows; r++) {
+			//makes rows
+			var tr = document.createElement('tr');
+			//sets columns
+			for (var l = 0; l < numCols; l++) {
+				//if current day is less than the end day
+				if (day1 < end) {	
+					if (empty < startDay) {
+					var td = document.createElement('td');
+					tr.appendChild(td);
+					empty++; 
+				} else {
+					var td = document.createElement('td'); 
+					td.innerHTML = (monthDay);
+					tr.appendChild(td);
+					day1++;
+					monthDay++;
+					}
+				}
+			}
+			zoomMonth.appendChild(tr);
+		 }
+		monthDiv.appendChild(zoomMonth);
+	 	container.appendChild(monthDiv);
+	};
+
+
 	this.render = function() {
 		var table = document.createElement("table");
 		var numRows = 12;
@@ -29,6 +92,7 @@ function Months(container) {
 
 			var th = document.createElement('th');	
 			th.setAttribute('class', m);
+			th.classList.add('month');
 			th.innerHTML = (thisMonth);
 			tr.appendChild(th);
 
@@ -39,20 +103,25 @@ function Months(container) {
 			var dayOfWeek = function() {
 				if ((weekDay) % 7 === 0) {
 					whichDay = theDays[2];
+					dayCell.dayID = 2;
 				} else if ((weekDay - 1) % 7 === 0) {
 					whichDay = theDays[3];
+					dayCell.dayID = 3;
 				} else if ((weekDay - 2) % 7 === 0) {
 					whichDay = theDays[4];
+					dayCell.dayID = 4;
 				} else if ((weekDay - 3) % 7 === 0) {
 					whichDay = theDays[5];
+					dayCell.dayID = 5;
 				} else if ((weekDay - 4) % 7 === 0) {
-					whichDay = theDays[6];
+					whichDay = theDays[6]; 
+					dayCell.dayID = 6;
 				} else if ((weekDay - 5) % 7 === 0) {
-					whichDay = theDays[7];
-				} else if ((weekDay - 6) % 7 === 0) {
 					whichDay = theDays[0];
-				} else if ((weekDay - 7) % 7 === 0) {
+					dayCell.dayID = 0;
+				} else if ((weekDay - 6) % 7 === 0) {
 					whichDay = theDays[1];
+					dayCell.dayID = 1;
 				}
 				dayCell.classList.add(whichDay);
 			};
@@ -84,13 +153,14 @@ function Months(container) {
 				th.setAttribute('id', thisMonth);
 				dayCol.innerHTML = (dayNum);
 				dayCol.setAttribute('class', dayNum);
-				// tr.appendChild(dayCol);
-					// if (m===1) {
-					// 	dayNum = 28;
-					// }
-					// else for () 
-
-
+				// var butts = "'" + th.id + "'";
+				// console.log(butts);
+				clickFunction = function() {
+					var monthString = this.id;
+					monthCal(monthString);
+				}
+				th.addEventListener('click', clickFunction, false);
+		
 			for (var numDays= 1; numDays<= dayNum; numDays++) {
 				weekDay++;	
 				dayCell = document.createElement('td');
@@ -98,67 +168,15 @@ function Months(container) {
 				dayCell.setAttribute('class', 'day');
 				dayCell.setAttribute('id', weekDay);
 				dayOfWeek();
-
 				tr.appendChild(dayCell);
-	
-
 			}		
 					
 			table.appendChild(tr);
 		}
 		container.appendChild(table);
 	};
-
-	var monthCal = function(monthID) {
-		var theMonth = document.getElementById(monthID);
-		var monthLength = theMonth.numberOfDays;
-		console.log(monthLength);
-		var day1 = theMonth.nextSibling.id;
-		var zoomMonth = document.createElement('table');
-		zoomMonth.setAttribute('class', 'monthTable');
-		var numCols = 7;
-		var numRows = Math.ceil(monthLength/7);
-		// var numRows = 4;
-
-		//sets number of rows
-		for (var r = 0; r < numRows; r++) {
-			//makes day of week labels
-			for (var p = 0; p < numCols; p++) {
-				var th = document.createElement('th');
-				th.innerHTML = (theDays[p]);
-				zoomMonth.appendChild(th);
-			}
-
-
-			//makes rows
-			var tr = document.createElement('tr');
-			for (var l = 0; l < numCols; l++) {
-				// for (var m = 0; m < monthLength; m++) {
-					//makes cells
-					var td = document.createElement('td'); 
-					td.innerHTML = (day1);
-					tr.appendChild(td);
-					day1++;
-					}
-				zoomMonth.appendChild(tr);
-		 	// }
-		 }
-		 	container.appendChild(zoomMonth);
-		 };
-			
-	
-
-	var clickMonth = document.getElementsByTagName('th');
-		// monthCal()
-	
-
 	this.monthCal = monthCal;
 }
-
-				// var eX = document.createTextNode('');
-				// eX.nodeValue = "X";
-				// xCell.appendChild(eX);
-
 
 var board2;
 function doStuff() {
@@ -168,7 +186,6 @@ function doStuff() {
 	board2 = new Months("months");
 	board2.render();
 	// board2.monthCal(31);
-	board2.monthCal("June");
 	// board2.monthCal("February");
 	// board2.populate();
 }

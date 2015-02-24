@@ -28,8 +28,13 @@ td {
 	width: 30px;
 }
 
-.monthTable {
+.monthDiv {
 	margin-top: 50px;
+	padding: 0 0 20px 0;
+}
+
+.month:hover {
+	cursor: pointer;
 }
 
 .monday {
