@@ -8,7 +8,6 @@ function Months(container) {
 		return {};
 	}
 	this.el = function() {
-		//console.log("hi!");
 		return container;
 	};
 
@@ -158,8 +157,7 @@ function Months(container) {
 				th.setAttribute('id', thisMonth);
 				dayCol.innerHTML = (dayNum);
 				dayCol.setAttribute('class', dayNum);
-				// var butts = "'" + th.id + "'";
-				// console.log(butts);
+
 				clickFunction = function() {
 					var thePlace = document.getElementById('monthDiv');
 					console.log(thePlace);
@@ -189,17 +187,10 @@ function Months(container) {
 var board2;
 function doStuff() {
 	var board = new Months(document.getElementById('mainDiv'));
-	// console.log(board.el() === document.body);
-
 	board2 = new Months("months");
 	board2.render();
-	// board2.monthCal(31);
-	// board2.monthCal("February");
-	// board2.populate();
 
 	$('body').flowtype();
 }
 
 window.onload = doStuff;
-
-
